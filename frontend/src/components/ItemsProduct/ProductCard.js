@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
   const handleLike = async () => {
     try {
       await axios.patch(
-        `${process.env.REACT_APP_API_URL}/products/${product._id}/like`
+        `${process.env.REACT_APP_API_URL}/api/products/${product._id}/like`
       );
       setLikes(likes + 1); // 상태 업데이트
     } catch (error) {

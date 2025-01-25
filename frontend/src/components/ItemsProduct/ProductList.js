@@ -14,8 +14,9 @@ const ProductList = ({ sortType, searchQuery, currentPage, itemsPerPage }) => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/products`
+          `${process.env.REACT_APP_API_URL}/api/products`
         );
+        console.log("API Response:", response);
         setProducts(response.data);
       } catch (error) {
         console.error("상품 목록 불러오기 실패:", error);

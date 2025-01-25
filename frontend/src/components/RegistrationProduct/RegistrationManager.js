@@ -101,15 +101,24 @@ const RegistrationManager = () => {
     e.preventDefault();
     if (!isFormValid) return;
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/products`, {
-        ...formData,
-        price: Number(formData.price),
-        tags: formData.tags,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/products`,
+        {
+          ...formData,
+          price: Number(formData.price),
+          tags: formData.tags,
+        }
+      );
+      console.log("등록 응답:", response); // 디버깅용
       alert("상품이 등록되었습니다!");
+      window.location.href = "/items";
     } catch (error) {
-      console.error("상품 등록 실패:", error);
-      alert("상품 등록에 실패했습니다.");
+      console.error("상품 등록 실패:", error.response?.data || error.message);
+      alert(
+        `상품 등록 실패: ${
+          error.response?.data?.message || "알 수 없는 오류가 발생했습니다."
+        }`
+      );
     }
   };
 
